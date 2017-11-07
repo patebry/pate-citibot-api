@@ -15,20 +15,10 @@ This will clone the repository into the (directory name) you choose
 Now change directories with the code cd (directory name)
 
 ## Dependencies
-To install all of the dependencies run `yarn add` or `npm install -S` This will add all of the dependencies in a `package.json` file
-
-## Scripts
-In the `package.json` file add a key to the object called scripts and inside of it add a key called `start` and its value should be `node app.js`. It should look like this.
-
-```
-"scripts": {
-  "start": "node App.js"
-}
-}
-```
+To install all of the dependencies run `yarn install` or `npm install -S` This will add all of the dependencies in a `package.json` file
 
 ## Setting up the .env file
-This is where all secrets can be kept. The `.env` file will look like this.
+This is where all secrets can be kept. The `.env` file can be created in the general directory for this app. once created copy this into it.
 
 ```
 COUCHDB_URL=
@@ -43,7 +33,7 @@ Fill in all of the keys with the values you want them to have. `COUCHDB_URL` is 
 
 ## Starting the API
 
-run the command `yarn start` or `npm start` once the start script has been made to start the API on port 4000
+run the command `yarn start` or `npm start` once the .env file has been created and set up to start the API on port 4000
 
 This port can be changed in `app.js` under `const port`
 
