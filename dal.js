@@ -14,7 +14,6 @@ const listCities = (lastItem, filter, limit, callback) => {
 
 function createFormat(body) {
 	body._id = trim(body._id)
-	console.log(body)
 	return body
 }
 

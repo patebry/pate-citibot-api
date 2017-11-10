@@ -52,7 +52,6 @@ app.post('/cities', function(req, res, next) {
 		phoneNumber: body._id
 	})
 	setupTrello(body.name, ['inbound', 'complete']).then(res => {
-		console.log('res', res)
 		;(body.trello = {
 			app: process.env.TRELLO_KEY,
 			token: process.env.TRELLO_TOKEN,
@@ -60,7 +59,6 @@ app.post('/cities', function(req, res, next) {
 		}),
 			pathOr(0, ['length'], reqFieldsCheckResults) > 0
 				? next(
-						console.log(body),
 						new HTTPError(400, 'Bad request.  Missing required field', {
 							missingFields: reqFieldsCheckResults
 						})
@@ -95,8 +93,6 @@ app.put('/cities/:id', (req, res, next) => {
 
 	const checkResults = checkUpdateFields(body)
 
-	console.log('checkResults', checkResults)
-
 	if (pathOr(0, ['length'], checkResults) > 0) {
 		return next(
 			new HTTPError(400, 'Bad request.  Missing required fields', {
@@ -119,7 +115,6 @@ app.put('/cities/:id', (req, res, next) => {
 		pick(['_id', '_rev', 'name', 'sites', 'content', 'description'], body),
 		(err, result) => {
 			if (err) next(new HTTPError(err.status, err.message, err))
-			console.log('PUT /profiles/:id result', result)
 			res.status(200).send(result)
 		}
 	)
@@ -149,7 +144,6 @@ app.get('/cities', (req, res, next) => {
 // Get numbers
 app.get('/numbers/:areaCode', (req, res, next) => {
 	var areaCode = req.params.areaCode
-	console.log('areaCode', areaCode)
 
 	twilio.availablePhoneNumbers('US').local.list({
 		areaCode: areaCode
